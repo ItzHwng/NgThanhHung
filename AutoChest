@@ -100,7 +100,7 @@ end
         local CoreGui = game:GetService("StarterGui")
         CoreGui:SetCore("SendNotification", {
             Title = "Auto Collect Chest",
-            Text = "Made By ItzHwng #3318",
+            Text = "Made By ItzHwng #3319",
             Duration = math.huge,
             Callback = AllowRunServiceBind,
             Button1 = "On",
@@ -111,7 +111,7 @@ end
     local CoreGui = game:GetService("StarterGui")
     CoreGui:SetCore("SendNotification", {
         Title = "Auto Collect Chest",
-        Text = "Made By ItzHwng #3318",
+        Text = "Made By ItzHwng #3319",
         Duration = math.huge,
         Callback = AllowRunServiceBind,
         Button1 = "On",
