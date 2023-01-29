@@ -1,8 +1,5 @@
 function thisCode()
     repeat wait() until game.IsLoaded and (game.Players.LocalPlayer or game.Players.PlayerAdded:Wait()) and (game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait())
-if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main", 9e9):FindFirstChild("ChooseTeam") then
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam", "Marines")
-end
     local PlaceID = game.PlaceId
     local AllIDs = {}
     local foundAnything = ""
@@ -148,3 +145,39 @@ end
 end
 
 thisCode()
+
+
+
+--[[Auto Join Team]]
+join = game.Players.localPlayer.Neutral == false
+if _G.Team == nil then
+    _G.Team = "Pirates"
+end
+_G.Team = "Marines"
+if (_G.Team == "Pirates" or _G.Team == "Marines") and not join then
+    repeat wait()
+        pcall(function()
+            join = game.Players.localPlayer.Neutral == false
+            if _G.Team == "Pirates" then
+                for i,v in pairs({"MouseButton1Click", "MouseButton1Down", "Activated"}) do
+                    for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.ViewportFrame.TextButton[v])) do
+                        v.Function()
+                    end
+                end
+            elseif _G.Team == "Marines" then
+                for i,v in pairs({"MouseButton1Click", "MouseButton1Down", "Activated"}) do
+                    for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton[v])) do
+                        v.Function()
+                    end
+                end
+            else
+                for i,v in pairs({"MouseButton1Click", "MouseButton1Down", "Activated"}) do
+                    for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton[v])) do
+                        v.Function()
+                    end
+                end
+            end
+        end)
+    until join == true
+    game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Visible = false
+end
